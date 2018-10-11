@@ -1,0 +1,7 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+[[plugins]]
+repo = 'Shougo/denite.nvim'
+hook_add = 'source ~/.config/nvim/denite_conf.vim'
