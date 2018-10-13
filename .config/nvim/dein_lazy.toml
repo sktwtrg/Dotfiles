@@ -5,6 +5,24 @@ hook_source = '''
     let g:deoplete#enable_at_startup = 1
     let g:deoplete#enable_ignore_case = 1
     let g:deoplete#enable_smart_case = 1
-    inoremap <silent><expr> <Tab>
-    \ pumvisible() ? "\<C-n>" : "\<Tab>"
+    
+    inoremap <expr><tab> pumvisible() ? "\<C-n>" :
+      \ neosnippet#expandable_or_jumpable() ?
+      \ "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
 '''
+
+[[plugins]]
+repo = 'Shougo/neosnippet.vim'
+hook_source = '''
+  "Ctrl+Kにターゲットジャンプ割当
+  imap <C-k> <Plug>(neosnippet_expand_or_jump)
+  smap <C-k> <Plug>(neosnippet_expand_or_jump)
+  xmap <C-k> <Plug>(neosnippet_expand_target)
+  if has('conceal')
+    set conceallevel=2 concealcursor=niv
+  endif
+  let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+'''
+on_i  = 1
+on_ft = ['snippet']
+depends = ['neosnippet-snippets']
